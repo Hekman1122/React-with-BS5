@@ -1,0 +1,130 @@
+$myShadow-1: 0 0.125rem 0.25rem rgb(207, 197, 189);
+@import "../../node_modules/bootstrap/scss/functions";
+
+//放置自定義變數--用於覆寫已存在之變數
+$primary: #3a9f64;
+// $input-font-size: 0.8rem;
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/maps";
+//放置自定義map
+$font-sizes: map-merge(
+  $font-sizes,
+  (
+    7: $font-size-base * 0.8,
+    8: $font-size-base * 0.7,
+    "myFontSize": $font-size-base * 1.1,
+  )
+);
+
+$utilities-text-colors: map-merge(
+  $utilities-text-colors,
+  (
+    "gray-700": $gray-700,
+    "gray-800": $gray-800,
+    "gray-600": $gray-600,
+    "gray-500": $gray-500,
+    "myGray": #4b4a4a,
+  )
+);
+
+$utilities-bg-colors: map-merge(
+  $utilities-bg-colors,
+  (
+    "line": #f97160,
+    "gray-200": $gray-200,
+    "gray-100": $gray-100,
+  )
+);
+@import "../../node_modules/bootstrap/scss/utilities";
+
+//放置自定義 utilities
+$utilities: map-merge(
+  $utilities,
+  (
+    "width":
+      map-merge(
+        map-get($utilities, "width"),
+        (
+          responsive: true,
+          values:
+            map-merge(
+              map-get(map-get($utilities, "width"), "values"),
+              (
+                "50px": 50px,
+                "2px": 2px,
+                "100px": 100px,
+                "150px": 150px,
+                "200px": 200px,
+                "250px": 250px,
+                "300px": 300px,
+              )
+            ),
+        )
+      ),
+    "height":
+      map-merge(
+        map-get($utilities, "height"),
+        (
+          responsive: true,
+          values:
+            map-merge(
+              map-get(map-get($utilities, "height"), "values"),
+              (
+                "80px": 80px,
+                "50px": 50px,
+              )
+            ),
+        )
+      ),
+    "shadow":
+      map-merge(
+        map-get($utilities, "shadow"),
+        (
+          responsive: false,
+          values:
+            map-merge(
+              map-get(map-get($utilities, "shadow"), "values"),
+              (
+                "myShadow-1": $myShadow-1,
+              )
+            ),
+        )
+      ),
+  )
+);
+
+// 自定義utilities
+$utilities: map-merge(
+  $utilities,
+  (
+    //擴充游標樣式
+    "cursor":
+      (
+        responsive: true,
+        property: cursor,
+        class: cursor,
+        values: pointer,
+      ),
+    "transform": (
+      responsive: true,
+      property: transform,
+      values: (
+        rotate-180: rotate(180deg),
+        scale-0: scale(0),
+        scale-1: scale(1),
+      ),
+    ),
+    "transition": (
+      responsive: true,
+      property: transition,
+      values: (
+        transform: transform 0.2s,
+        color: color 0.2s,
+      ),
+    )
+  )
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
